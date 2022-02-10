@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- <title>社員情報編集</title> -->
+<head th:replace="common/head :: head_fragment(title = '社員情報編集', scripts = ~{::script}, links = ~{::link})"></head>
+
+</head>
+<body>
+<h1>社員情報編集</h1>
+<div class="container">
+<form th:action="@{/user/edit}" th:object="${userRequest}" th:method="post">
+
+<table class="table table-striped  table-bordered">
+  <tbody>
+		<tr>
+			<th scope="row">社員番号</th>
+			<td>
+				<div class="form-group mt-3">
+					<input type="text" th:field="*{userid}" readonly id="userid" placeholder="1">
+				</div>
+				<th:if="${#fields.hasErrors('userid')}" th:errors="*{userid}"style="color:red;"></th:if>
+			</td>
+		</tr>
+    <tr>
+      <th scope="row">パスワード</th>
+      	<td>
+			<div class="form-group mt-3">
+				<input type="text" th:field="*{password}" id="password">
+			</div>
+				<th:if="${#fields.hasErrors('password')}" th:errors="*{password}"style="color:red;"></th:if>
+			</td>
+	</tr>
+   <tr>
+      <th scope="row">氏名</th>
+      	<td>
+			<div class="form-group mt-3">
+				<input type="text" th:field="*{username}" id="username" placeholder="sample1">
+			</div>
+				<th:if="${#fields.hasErrors('username')}" th:errors="*{username}"style="color:red;"></th:if>
+			</td>
+	</tr>
+    <tr>
+      <th scope="row">メールアドレス</th>
+      	<td>
+			<div class="form-group mt-3">
+				<input type="text" th:field="*{mail}" id="mail" placeholder="s1@xxx.co.jp">
+			</div>
+				<th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"style="color:red;"></th:if>
+			</td>
+	</tr>
+    <tr>
+      <th scope="row">電話番号</th>
+     	<td>
+			<div class="form-group mt-3">
+				<input type="text" th:field="*{phone}" id="phone" placeholder="000-0000-0000">
+			</div>
+			<th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"style="color:red;"></th:if>
+			</td>
+	</tr>
+     <tr>
+      <th scope="row">入社年月日</th>
+      	<td>
+			<div class="form-group mt-3">
+				<input type="date" th:field="*{date}" id="date" >
+			</div>
+				<th:if="${#fields.hasErrors('date')}" th:errors="*{date}"style="color:red;"></th:if>
+			</td>
+	</tr>
+  </tbody>
+</table>
+	<div class="text-right">
+		<a href="/user/list"> <button type="submit" class="btn btn-primary mb-3" id="signup">登録</button></a>
+	</div>
+</form>
+</div>
+</body>
+</html>

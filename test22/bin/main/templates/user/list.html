@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- <title>社員情報一覧</title> -->
+<head th:replace="common/head :: head_fragment(title = '社員情報一覧', scripts = ~{::script}, links = ~{::link})"></head>
+</head>
+<body>
+<div class="container">
+	<h1>社員情報一覧</h1>
+	<a href="/user/regist">
+	<button type="button" class="btn btn-primary">新規登録</button>
+	</a>
+<!-- 	<p /> -->
+
+<!-- 	<table> -->
+<!-- 	<tr> -->
+<!-- 		<td>ID検索:</td> -->
+<!-- 		<td><input type="search" id="search"></td> -->
+<!--     </tr> -->
+<!--     <tr> -->
+<!-- 		<td>氏名検索:</td> -->
+<!-- 		<td><input type="search" id="search"></td> -->
+<!--     	<td><button type="submit" class="btn btn-primary">検索</button></td> -->
+<!--     </tr> -->
+<!--     </table> -->
+
+<table class="table table-striped">
+<thead>
+  <tr>
+    <th scope="col">No.</th>
+    <th scope="col">氏名</th>
+    <th scope="col">Eメール</th>
+    <th scope="col">電話番号</th>
+    <th scope="col">入社日</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <tr th:scope="row" th:each="user : ${userlist}" th:object="${user}">
+    	<td th:text="*{userid}"></td>
+    	<td th:text="*{username}"></td>
+    	<td th:text="*{mail}"></td>
+    	<td th:text="*{phone}"></td>
+    	<td th:text="*{date}"></td>
+    	<td>
+    		<a th:href="@{/user/{userid}/edit(userid=*{userid})}"><button type="submit" class="btn btn-success">編集</button></a>
+    		<a th:href="@{/user/list/{userid}/delete(userid=*{userid})}"><button type="submit" class="btn btn-danger">削除</button></a>
+    	</td>
+    </tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
